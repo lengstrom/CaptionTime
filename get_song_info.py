@@ -7,6 +7,12 @@ song_info = {
     'title':SONG_TITLE,
     'artist':SONG_ARTIST,
     'img':SONG_IMG,
-    'languages':[]
+    'languages':[str(i['snippet']['language']) for i in caption_candidates]
 }
+
+for i in json_to_write['languages']:
+    print '______________________'
+    print i, SONG_ID
+    xml2json.make_json_from_xml(i, SONG_ID, und_is_en, GB_is_en)
+    print "----------------------"
 
