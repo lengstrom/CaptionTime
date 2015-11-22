@@ -10,9 +10,11 @@ song_info = {
     'languages':[str(i['snippet']['language']) for i in caption_candidates]
 }
 
-for i in json_to_write['languages']:
-    print '______________________'
-    print i, SONG_ID
-    xml2json.make_json_from_xml(i, SONG_ID, und_is_en, GB_is_en)
-    print "----------------------"
+for i in song_info['languages']:
+    obj = xml2json.make_json_from_xml(i, SONG_ID)
+    with open(obj['lang'] + '.json', 'w') as f:
+        f.write(obj['json'])
+
+with open('info.json', 'w') as f:
+    f.write(json.dumps(song_info))
 
